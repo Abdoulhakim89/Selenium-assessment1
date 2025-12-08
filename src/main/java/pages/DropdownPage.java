@@ -23,15 +23,15 @@ public class DropdownPage {
     }
 
     public List<String> selectedFrom1(){
-        var selected = selectDropdown("my-dropdown1").getAllSelectedOptions();
+        var selected = selectDropdown("my-dropdown-1").getAllSelectedOptions();
         return selected.stream().map(a -> a.getText()).collect(Collectors.toList());
     }
     public void selectFrom2(String text){
-        selectDropdown("my-dropdown2").selectByVisibleText(text);
+        selectDropdown("my-dropdown-2").selectByVisibleText(text);
     }
 
     public List<String> selectedFrom2(){
-        var selected = selectDropdown("my-dropdown2").getAllSelectedOptions();
+        var selected = selectDropdown("my-dropdown-2").getAllSelectedOptions();
         return selected.stream().map(a -> a.getText()).collect(Collectors.toList());
     }
 }
