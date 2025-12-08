@@ -26,8 +26,8 @@ public class BaseTests {
 
     }
 
-//    @AfterClass
-//    public void quit(){
-//        driver.quit();
-//    }
+    @AfterClass
+    public void quit(){
+        driver.quit();
+    }
 }
