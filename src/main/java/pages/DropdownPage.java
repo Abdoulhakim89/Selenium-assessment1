@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -15,23 +17,35 @@ public class DropdownPage {
     public DropdownPage(WebDriver driver){
         this.driver = driver;
     }
-    public Select selectDropdown(String id){
-        return new Select(driver.findElement(By.id(id)));
-    }
-    public void selectFrom1(String text){
-        selectDropdown("my-dropdown1").selectByVisibleText(text);
+
+    public WebElement selectDropdown(String id){
+        return driver.findElement(By.id(id));
     }
 
-    public List<String> selectedFrom1(){
-        var selected = selectDropdown("my-dropdown-1").getAllSelectedOptions();
-        return selected.stream().map(a -> a.getText()).collect(Collectors.toList());
-    }
-    public void selectFrom2(String text){
-        selectDropdown("my-dropdown-2").selectByVisibleText(text);
+    public void clickDropdown1(){
+        selectDropdown("my-dropdown-1").click();
     }
 
-    public List<String> selectedFrom2(){
-        var selected = selectDropdown("my-dropdown-2").getAllSelectedOptions();
-        return selected.stream().map(a -> a.getText()).collect(Collectors.toList());
+    public String dropdown1Expanded(){
+        return selectDropdown("my-dropdown-1").getAttribute("aria-expanded");
+    }
+
+    public void clickDropdown2(){
+        var dropdown2 = selectDropdown("my-dropdown-2");
+        Actions action = new Actions(driver);
+        action.contextClick(dropdown2).perform();
+    }
+
+    public String dropdown2Expanded(){
+        return selectDropdown("context-menu-2").getCssValue("display");
+    }
+    public void clickDropdown3(){
+        var dropdown2 = selectDropdown("my-dropdown-3");
+        Actions action = new Actions(driver);
+        action.doubleClick(dropdown2).perform();
+    }
+
+    public String dropdown3Expanded(){
+        return selectDropdown("context-menu-3").getCssValue("display");
     }
 }
